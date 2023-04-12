@@ -51,6 +51,7 @@ print(len(documents), "documents")
 print(len(classes), "classes", classes)
 print(len(words), "unique lemmetized words", words)
 
+#creating the pickel files
 pickle.dump(words, open('words.pkl', 'wb'))
 pickle.dump(classes, open('classes.pkl', 'wb'))
 
