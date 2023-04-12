@@ -90,3 +90,20 @@ print('Training data generated - A step completed!')
 #3 layers -> first layer (128 neurons), second layer (64 neurons) and third output layer contains number of neurons equal to number of intents to predict output intent with "softmax"
 #Sequential model in keras is used here
 model = Sequential()
+model.add(Dense(128, input_shape = (len(train_x[0]),), activation='relu'))
+model.add(Dropout(0.5))
+model.add(Dense(64, activation='relu'))
+model.add(Dropout(0.5))
+model.add(Dense(len(train_y[0]), activation='softmax'))
+
+#Stochastic gradient descent with Nesterov accelerated gradient gives good results for this one.
+#Stochastic is more efficient than normal gradient descent
+
+sgd = SGD(lr= 0.01, decay=1e-6, momentum=0.9 , nesterov=True)
+model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
+
+#Fitting and saving the model (model saved in chatbuddy_model.h5 file)
+hist = model.fit(np.array(train_x), np.array(train_y), epochs=200, batch_size=5, verbose=1)
+model.save('chatbuddy_model.h5', hist)
+
+print('Model Created! Stay happy and move forward :>')
