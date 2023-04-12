@@ -90,4 +90,3 @@ print('Training data generated - A step completed!')
 #3 layers -> first layer (128 neurons), second layer (64 neurons) and third output layer contains number of neurons equal to number of intents to predict output intent with "softmax"
 #Sequential model in keras is used here
 model = Sequential()
-model.add(Dense())
