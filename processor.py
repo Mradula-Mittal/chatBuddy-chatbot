@@ -54,13 +54,18 @@ def predict_class(sentence, model):
 
 def getResponse(ints, intents_json):
     tag = ints[0]['intent']
+    print(tag)
     list_of_intents = intents_json['intents']
+    # print(list_of_intents[0])
+    # print(i.get(tag))
     for i in list_of_intents:
-        if (i[tag] == tag):
+        if (i.get("tag") == tag):
             result = random.choice(i['responses'])
-            break 
+            break
         else:
             result = "Sorry, didn't understand your question. Please ask the right question."    
+    else:
+        result = "Sorry, didn't understand your question. Please ask the right question."    
     return result
 
 def chatbot_response(message):
